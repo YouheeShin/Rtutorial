@@ -1,0 +1,38 @@
+---
+title: "Rtutorial"
+author: "Youhee Shin"
+date: "January 23, 2017"
+output: html_document
+---
+
+## Introduction
+This is the data description
+
+```{r, echo=FALSE}
+#load the data
+ourdata <- read.csv("data/Boats.csv", header = TRUE, sep =";")
+
+firstrows <- head(ourdata,5)
+firstrows2 <- ourdata[1:5, 1:3]
+knitr::kable(firstrows)
+```
+
+Let's now see the correlation of our columns:
+
+```{r}
+colnames(firstrows) <- substring(colnames(firstrows), first = 1, last = 4)
+
+colnames(firstrows)[ncol(firstrows)] <- "New"
+mycorrelationnumbers = cor(firstrows)
+knitr::kable(mycorrelationnumbers)
+```
+
+##Apply
+
+
+```{r, echo = FALSE}
+tmp = apply(firstrows, 1, range)
+knitr::kable(tmp)
+
+```
+
